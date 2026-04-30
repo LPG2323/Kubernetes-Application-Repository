@@ -50,7 +50,7 @@ pipeline {
 
                 dir('ensitech-spring-microservice/user-service') {
 
-                    sh '../mvnw test || true'
+                    sh '../mvnw test'
 
                 }
 
@@ -70,11 +70,13 @@ pipeline {
 
                             ../mvnw sonar:sonar \
 
-                              -Dsonar.projectKey=user-service \
+                            -Dsonar.projectKey=user-service \
 
-                              -Dsonar.projectName=user-service \
+                            -Dsonar.projectName=user-service \
 
-                              -Dsonar.host.url=http://localhost:49160
+                            -Dsonar.host.url=$SONAR_HOST_URL \
+
+                            -Dsonar.login=$SONAR_AUTH_TOKEN
 
                         '''
 
